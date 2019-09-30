@@ -1,26 +1,62 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import GroupList from "./components/GroupList";
+import MessageList from "./components/MessageList";
+import SendMessageForm from "./components/SendMessageForm";
+import NewGroupForm from './components/NewGroupForm';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Chatkit from "@pusher/chatkit-client";
+import { instanceLocator, tokenUrl, userId } from "./config";
+
+class App extends Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      messages: []
+    }
+  }
+  
+
+    componentDidMount(){
+      const tokenProvider = new Chatkit.TokenProvider({
+        url: tokenUrl
+      });
+
+        const chatManager = new Chatkit.ChatManager({
+          instanceLocator,
+          userId,
+          tokenProvider
+        });
+
+        chatManager.connect()
+          .then(currentUser => {
+              currentUser.subscribeToRoom({
+                roomId: currentUser.rooms[0].id,
+                hooks: {
+                  onMessage: message => {
+                    this.setState({
+                      messages: [...this.state.messages, message]
+                    })
+                  }
+                }
+              })
+
+          }).catch(err => {
+            console.log("error: ", err)
+          })
+    }
+    render() {
+        return (
+          <div className="app">
+            <GroupList />
+            <MessageList messages={this.state.messages}/>
+            <SendMessageForm />
+            <NewGroupForm />
+          </div>
+        );
+
+    }
 }
 
 export default App;

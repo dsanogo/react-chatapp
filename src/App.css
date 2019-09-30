@@ -1,22 +1,73 @@
-.App {
-  text-align: center;
+.message-username {
+  color: cadetblue;
+  padding: 3px;
 }
 
-.App-logo {
-  height: 40vmin;
+.message-text {
+  padding: 5px;
+  border-radius: 5px;
+  background: blueviolet;
+  color: #fff;
+  margin-bottom: 5px;
+  font-size: 1vw;
+  display: inline-block;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.group-list {
+  background: rgb(26, 23, 23);
+  padding: 15px 0 0 5px; 
   color: white;
+  margin-bottom: 10px;
 }
 
-.App-link {
-  color: #09d3ac;
+.group-list .group-list-title {
+  text-align: center;
+
+}
+
+.message-list {
+  padding: 15px 0 0 10px;
+  border: 1px solid rgba(128, 128, 128, 0.644);
+  border-top: none;
+  margin: 0 10px 10px 10px;
+  border-radius: 2px;
+  background: white
+}
+.send-message-form{
+  margin: 0 10px 0 10px;
+}
+
+.send-message-form input {
+  width: 99%;
+  height: 93%;
+  padding-left: 15px;
+  background: rgb(26, 23, 23);
+  color: white;
+  border: 1px solid rgb(26, 23, 23);
+  border-radius: 3px;
+}
+
+.send-message-form input::placeholder {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: white;
+  font-style: italic;
+}
+
+.new-group-form button {
+  width: 100%;
+  height: 100%;
+  font-size: 20px;
+  background: blueviolet;
+  border: none;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.new-group-form button span {
+  position: relative;
+  left: 20px;
+  font-size: 25px;
+  font-weight: bold;
+  top: 2px;
 }
