@@ -1,16 +1,38 @@
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: blueviolet; 
+  border-radius: 15px
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: black; 
+  border-radius: 15px
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: black; 
+}
+
 .message-username {
-  color: black;
+  color: white;
   padding: 3px;
 }
 
 .message-text {
   padding: 5px;
   border-radius: 5px;
-  background: blueviolet;
+  background: black;
   color: #fff;
   margin-bottom: 3px;
-  font-size: 1vw;
+  font-size: 1.2vw;
   display: inline-block;
+  margin-left: 10px;
 }
 
 .group-list {
@@ -32,7 +54,10 @@
   border: 1px solid #b0cdef;
   margin: 5px 10px 10px 10px;
   border-radius: 2px;
-  background-image: linear-gradient(to top, #accbee 0%, #e7f0fd 100%);
+  /* background-image: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%); */
+  /* background: url("https://maxeseg.com/css/../images/mob.jpg") top center no-repeat; */
+  /* background: url("https://maxeseg.com/css/../images/why-bg.png") bottom center no-repeat; */
+  background: url("https://maxeseg.com/maxes-2019/img/careers/Careers3.jpg");
   max-height: 100%;
   overflow: hidden;
   overflow-y: scroll
@@ -45,10 +70,18 @@
   padding: 0;
   margin: 0;
   font-weight: bold;
+  color: white;
+  background: black;
+  /* display: inline-block; */
+  text-align: center;
+  padding: 10px;
+  border-radius: 5px;
+  position: relative;
+  top: -13px;
 }
 
 .active {
-  background: #accbee;
+  /* background: #accbee; */
   display: inline-block;
   padding: 5px;
   border-radius: 4px;
@@ -56,15 +89,19 @@
 }
 
 .active a {
-  color: black !important;
+  color: white !important;
 }
 
 .message-list .noMsg {
-  font-size: 18px;
+  font-size: 20px;
   text-align: center;
   padding: 0;
   margin: 0;
-  font-weight: bold
+  font-weight: bold;
+  color: white;
+  font-weight: bold;
+  position: relative;
+  top: 20%;
 }
 .send-message-form{
   margin: 0 15px 5px 10px;
@@ -78,6 +115,7 @@
   color: white;
   border: 1px solid rgb(26, 23, 23);
   border-radius: 3px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .send-message-form input::placeholder {
@@ -98,6 +136,7 @@
   color: white;
   border: 1px solid rgb(26, 23, 23);
   border-radius: 3px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .new-group-form  input::placeholder {
@@ -128,6 +167,10 @@
 .emptyRoom {
   text-align: center;
   font-size: 30px;
+  color: white;
+  font-weight: bold;
+  position: relative;
+  top: 20%;
 }
 
 .hidden {
@@ -143,4 +186,73 @@
   position: relative;
   top: 5px;
   font-weight: bold;
+}
+
+.messageTime {
+  padding: 5px;
+  /* background: red; */
+  display: inline-block;
+  border-radius: 12px;
+  /* color: white; */
+  font-style: italic;
+}
+
+.addNewGroupBtn {
+  display: inline;
+  position: relative;
+  left: 65px;
+  border-radius: 40%;
+  background: whitesmoke;
+  color: black;
+  border: 0;
+  cursor: pointer;
+  font-weight: bold
+}
+
+.addNewGroupBtn:hover {
+  display: inline;
+  position: relative;
+  left: 65px;
+  border-radius: 40%;
+  background: rebeccapurple;
+  color: whitesmoke;
+  border: 0;
+  cursor: pointer;
+  font-weight: bold
+}
+
+.copyrights {
+  margin-top: 100px;
+}
+
+.roomUsers{
+  width: 200px;
+  height: 300px;
+  display: inline-block;
+  float: right;
+  background: white;
+  padding: 15px;
+  margin-right: 10px;
+  color: black;
+  border-radius: 5px;
+}
+
+.roomUsers h4 {
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+  text-decoration: underline
+}
+
+.roomUsers p {
+  padding-left: 15px;
+}
+
+.roomUsers img {
+    display: inline;
+    width: 18px;
+    height: 18px;
+    position: relative;
+    top: 5px;
+    padding-right: 5px;
 }

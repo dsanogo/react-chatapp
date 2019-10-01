@@ -25,6 +25,12 @@ class NewGroupForm extends Component {
         }
        
     }
+
+    componentDidUpdate = () => {
+        if(this.props.isClicked){
+            this.nameInput.focus(); 
+        }
+    }
     
     render() {
         return (
@@ -33,7 +39,9 @@ class NewGroupForm extends Component {
                     onSubmit={this.handleSumit}>
                         <input type="text" placeholder="Create new group here..."
                             onChange={this.handleChange}
-                            value={this.state.groupName}/>
+                            value={this.state.groupName} 
+                            ref={(input) => { this.nameInput = input; }} 
+                            />
                     </form>
             </div>
         )

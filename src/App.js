@@ -6,7 +6,7 @@ import SendMessageForm from "./components/SendMessageForm";
 import NewGroupForm from './components/NewGroupForm';
 
 import Chatkit from "@pusher/chatkit-client";
-import { instanceLocator, tokenUrl, userId } from "./config";
+import { instanceLocator, tokenUrl } from "./config";
 
 class App extends Component {
 
@@ -16,7 +16,8 @@ class App extends Component {
       messages: [],
       joinableRooms: [],
       joinedRooms: [],
-      selectedRoom: {}
+      selectedRoom: {},
+      newGroupBtnClicked: false
     }
   }
   
@@ -26,9 +27,12 @@ class App extends Component {
         url: tokenUrl
       });
 
+      const users = ['d_sanogo', 'walid', 'aya'];
+      const user = users[Math.floor(Math.random() * users.length)];
+
         const chatManager = new Chatkit.ChatManager({
           instanceLocator,
-          userId,
+          userId: user,
           tokenProvider
         });
 
@@ -73,10 +77,14 @@ class App extends Component {
     }
 
     sendMessage = (text) => {
-      this.currentUser.sendMessage({
-        text: text,
-        roomId: this.state.selectedRoom.id
-      });
+      if(this.state.selectedRoom.id !== undefined) {
+        this.currentUser.sendMessage({
+          text: text,
+          roomId: this.state.selectedRoom.id
+        });
+      }else {
+        alert('Hey, did you forget to choose a room?');
+      }
     }
 
     createRoom = (roomName) => {
@@ -89,6 +97,13 @@ class App extends Component {
       });
     }
 
+    newGroupClick = () => {
+      this.setState({
+        newGroupBtnClicked: true
+      })
+    }
+
+
     render() {
         return (
           <div className="app">
@@ -96,10 +111,12 @@ class App extends Component {
                   groupList={[...this.state.joinableRooms,...this.state.joinedRooms]} 
                   subscribeToRoom={this.subscribeToRoom}
                   currentRoom={this.state.selectedRoom.id}
+                  currentUser={this.currentUser}
+                  newGroupClick={this.newGroupClick}
                 />
-            <MessageList messages={this.state.messages} selectedRoom={this.state.selectedRoom.name}/>
+            <MessageList messages={this.state.messages} selectedRoom={this.state.selectedRoom}/>
             <SendMessageForm sendMessage={this.sendMessage} currentRoom={this.state.selectedRoom.id}/>
-            <NewGroupForm createRoom={this.createRoom}/>
+            <NewGroupForm createRoom={this.createRoom} isClicked={this.state.newGroupBtnClicked}/>
           </div>
         );
 

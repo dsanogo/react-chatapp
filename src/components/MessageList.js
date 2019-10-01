@@ -18,11 +18,15 @@ class MessageList extends Component {
 
     render() {
         const {messages, selectedRoom} = this.props;
-        const displayMessages = selectedRoom === undefined ? (
+        const displayMessages = selectedRoom.name === undefined ? (
             <div className="emptyRoom">
-                <p>No room selected</p>
+                <p>Welcome to <span style={{fontWeight: "900", textDecoration: "underline"}}>SMARTI'M</span></p>
                 <p>Select a room to start chatting</p>
-                <p> <span className="arrow">&larr;	</span> Join a room</p>
+                <p>Join a room <span className="arrow">&rarr;	</span></p>
+                <div className="copyrights">
+                    <p style={{fontSize: '15px'}}>Copyright &copy; SmartI'M - All Rights Reserved</p>
+                    <p style={{fontSize: '13px', fontStyle: "italic"}}>By: Daouda Sanogo</p>
+                </div>
             </div>
         ) : (
             messages.map(message => {
@@ -33,14 +37,29 @@ class MessageList extends Component {
         )
         return (
             <div className="message-list">
-                {selectedRoom === "" ? '' : (
-                    <h3 className="roomName">{selectedRoom}</h3>
+                {selectedRoom.name === undefined ? '' : (
+                    <div>
+                        <h3 className="roomName">{"# " + selectedRoom.name}</h3>
+                        <div className="roomUsers">
+                            <h4>Users</h4>
+                            {selectedRoom.users && selectedRoom.users.map(user => {
+                                return (<p key={user.id}>
+                                    <img src="https://image.flaticon.com/icons/png/512/64/64572.png" />
+                                        @ {user.name} 
+                                        <span style={{fontStyle: 'italic'}}>{selectedRoom.createdByUserId === user.id ? " - Admin" : ''}</span>
+                                </p>)
+                            })}
+                        </div>
+                        
+                    </div>
+                    
                 )}
 
-                {selectedRoom !== undefined && messages.length == 0 ? (
+                {selectedRoom.name !== undefined && messages.length == 0 ? (
                     <div className="noMsg">
-                        <h3>No Message found for this room</h3>
+                        <h3>No Message found for # <span style={{fontWeight: "bold"}}>{selectedRoom.name}</span></h3>
                         <p>Start chat now...</p>
+                        <p className="arrow">&darr;</p>
                     </div>
                 ) : ''}
 
