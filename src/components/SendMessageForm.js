@@ -16,19 +16,24 @@ class SendMessageForm extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
+        if(this.state.message !== ''){
+            this.props.sendMessage(this.state.message);
+            this.setState({
+                message: ''
+            })
+        }
         
-        this.setState({
-            message: ''
-        })
-        alert(this.state.message);
     }
     
     render() {
+        const shown = this.props.currentRoom === undefined ? 'disabled' : '';
+        const pleaceHolder = this.props.currentRoom === undefined ? 'Join a room and start chatting' : 'Enter your message and hit ENTER';
         return (
-            <form onSubmit={this.handleSubmit} className="send-message-form">
+            <form onSubmit={this.handleSubmit} className={"send-message-form " + shown} >
                 <input 
+                    disabled={shown}
                     type="text"
-                    placeholder="Enter your message and hit ENTER"
+                    placeholder={pleaceHolder}
                     onChange={this.handleChange}
                     value={this.state.message}
                     />

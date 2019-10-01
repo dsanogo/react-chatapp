@@ -13,7 +13,10 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      messages: []
+      messages: [],
+      joinableRooms: [],
+      joinedRooms: [],
+      selectedRoom: {}
     }
   }
   
@@ -31,28 +34,72 @@ class App extends Component {
 
         chatManager.connect()
           .then(currentUser => {
-              currentUser.subscribeToRoom({
-                roomId: currentUser.rooms[0].id,
-                hooks: {
-                  onMessage: message => {
-                    this.setState({
-                      messages: [...this.state.messages, message]
-                    })
-                  }
-                }
-              })
-
+            this.currentUser = currentUser;
+            this.getRooms();
           }).catch(err => {
             console.log("error: ", err)
           })
     }
+
+    subscribeToRoom = (room) => {
+      this.setState({messages: [], selectedRoom: room});
+      this.currentUser.subscribeToRoom({
+        roomId: room.id,
+        hooks: {
+          onMessage: message => {
+            this.setState({
+              messages: [...this.state.messages, message]
+            })
+          }
+        }
+      }).then(room => {
+        this.getRooms()
+      }).catch(err => {
+        console.log('Subscribing to room: ', err)
+      })
+    }
+
+    getRooms = () => {
+      this.currentUser.getJoinableRooms()
+        .then(joinableRooms => {
+          this.setState({
+            joinableRooms,
+            joinedRooms: this.currentUser.rooms
+          })
+        })
+        .catch(err => {
+          console.log('Joinable rooms error: ', err);
+        });
+    }
+
+    sendMessage = (text) => {
+      this.currentUser.sendMessage({
+        text: text,
+        roomId: this.state.selectedRoom.id
+      });
+    }
+
+    createRoom = (roomName) => {
+      this.currentUser.createRoom({
+        name: roomName
+      }).then(room => {
+        this.subscribeToRoom(room);
+      }).catch(err => {
+        console.log('Error creating new room: ', err);
+      });
+    }
+
     render() {
         return (
           <div className="app">
-            <GroupList />
-            <MessageList messages={this.state.messages}/>
-            <SendMessageForm />
-            <NewGroupForm />
+            <GroupList 
+                  groupList={[...this.state.joinableRooms,...this.state.joinedRooms]} 
+                  subscribeToRoom={this.subscribeToRoom}
+                  currentRoom={this.state.selectedRoom.id}
+                />
+            <MessageList messages={this.state.messages} selectedRoom={this.state.selectedRoom.name}/>
+            <SendMessageForm sendMessage={this.sendMessage} currentRoom={this.state.selectedRoom.id}/>
+            <NewGroupForm createRoom={this.createRoom}/>
           </div>
         );
 
