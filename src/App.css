@@ -74,7 +74,7 @@
   padding: 15px 0 0 0;
   margin: 5px 0px 5px 10px;
   border-radius: 2px;
-  background: url("https://maxeseg.com/maxes-2019/img/careers/Careers3.jpg");
+  background: url("/bg_image.jpg");
   max-height: 50rem;
   overflow-y: auto;
 }
