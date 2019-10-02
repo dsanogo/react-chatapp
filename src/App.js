@@ -17,7 +17,8 @@ class App extends Component {
       joinableRooms: [],
       joinedRooms: [],
       selectedRoom: {},
-      newGroupBtnClicked: false
+      newGroupBtnClicked: false,
+      success: false
     }
   }
   
@@ -46,7 +47,7 @@ class App extends Component {
     }
 
     subscribeToRoom = (room) => {
-      this.setState({messages: [], selectedRoom: room});
+      this.setState({messages: []});
       this.currentUser.subscribeToRoom({
         roomId: room.id,
         hooks: {
@@ -57,6 +58,7 @@ class App extends Component {
           }
         }
       }).then(room => {
+        this.setState({selectedRoom: room});
         this.getRooms()
       }).catch(err => {
         console.log('Subscribing to room: ', err)
@@ -92,15 +94,52 @@ class App extends Component {
         name: roomName
       }).then(room => {
         this.subscribeToRoom(room);
+        this.success();
       }).catch(err => {
         console.log('Error creating new room: ', err);
       });
+    }
+
+    leaveRoom = (room) => {
+      this.currentUser.leaveRoom({
+        roomId: room.id
+      }).then(res => {
+        this.getRooms();
+        this.setState({messages: [], selectedRoom: {}});
+        this.success();
+      }).catch(err => {
+        console.log("Error in leaving room: ", err.info.error_descriptionr)
+      })
     }
 
     newGroupClick = () => {
       this.setState({
         newGroupBtnClicked: true
       })
+    }
+
+    deleteRoom = (room) => {
+      this.currentUser.deleteRoom({roomId: room.id}).then(response => {
+        this.getRooms();
+        this.setState({messages: [], selectedRoom: {}});
+        this.success();
+      }).catch(err => {
+        console.log('Error in deleting room: ', err.info.error_description);
+      })
+    }
+
+    resetRoom = () => {
+      this.setState({messages: [], selectedRoom: {}});
+    }
+
+    success = () => {
+      this.setState({
+        success: true
+      })
+
+      setTimeout(() => {
+        this.setState({success: false})
+      }, 3000);
     }
 
 
@@ -113,8 +152,14 @@ class App extends Component {
                   currentRoom={this.state.selectedRoom.id}
                   currentUser={this.currentUser}
                   newGroupClick={this.newGroupClick}
+                  deleteRoom={this.deleteRoom}
+                  resetRoom={this.resetRoom}
+                  success={this.state.success}
                 />
-            <MessageList messages={this.state.messages} selectedRoom={this.state.selectedRoom}/>
+            <MessageList 
+                  messages={this.state.messages} 
+                  selectedRoom={this.state.selectedRoom}
+                  leaveRoom={this.leaveRoom}/>
             <SendMessageForm sendMessage={this.sendMessage} currentRoom={this.state.selectedRoom.id}/>
             <NewGroupForm createRoom={this.createRoom} isClicked={this.state.newGroupBtnClicked}/>
           </div>

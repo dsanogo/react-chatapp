@@ -11,7 +11,7 @@
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: black; 
-  border-radius: 15px
+  border-radius: 10px
 }
 
 /* Handle on hover */
@@ -22,6 +22,7 @@
 .message-username {
   color: white;
   padding: 3px;
+  font-size: 12px;
 }
 
 .message-text {
@@ -30,38 +31,52 @@
   background: black;
   color: #fff;
   margin-bottom: 3px;
-  font-size: 1.2vw;
+  font-size: 13px;
   display: inline-block;
   margin-left: 10px;
 }
 
 .group-list {
   background: rgb(26, 23, 23);
-  padding: 15px 0 0 5px; 
+  padding: 15px 0 0 5px;
   color: white;
   margin-bottom: 10px;
-  margin: 5px 0 5px 5px;
+  margin: 5px 10px 5px 5px;
   border-radius: 3px;
+  overflow: hidden;
+  overflow-y: auto;
+  
 }
 
+.groupTitle{
+  cursor: pointer;
+}
+
+.authors {
+  color: rgb(174, 143, 206) !important;
+}
+
+.authors:hover{
+  color: rgb(201, 184, 218) !important
+}
+.brandName {
+  font-family: 'Underdog', cursive;
+
+  font-weight: 600;
+  text-decoration: underline;
+}
 .group-list .group-list-title {
   text-align: center;
 
 }
 
 .message-list {
-  padding: 15px 0 0 15px;
-  border: 1px solid #b0cdef;
-  margin: 5px 10px 10px 10px;
+  padding: 15px 0 0 0;
+  margin: 5px 0px 5px 10px;
   border-radius: 2px;
-  /* background-image: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%); */
-  /* background: url("https://maxeseg.com/css/../images/mob.jpg") top center no-repeat; */
-  /* background: url("https://maxeseg.com/css/../images/why-bg.png") bottom center no-repeat; */
   background: url("https://maxeseg.com/maxes-2019/img/careers/Careers3.jpg");
-  max-height: 100%;
-  overflow: hidden;
-  overflow-y: scroll
-  /* box-shadow: 20px 20px 2px 2px rgba(102, 51, 153, 0.418); */
+  max-height: 50rem;
+  overflow-y: auto;
 }
 
 .message-list .roomName {
@@ -72,19 +87,28 @@
   font-weight: bold;
   color: white;
   background: black;
-  /* display: inline-block; */
   text-align: center;
   padding: 10px;
   border-radius: 5px;
   position: relative;
   top: -13px;
+  font-family: 'Roboto Mono', monospace;
 }
 
+.h3, h3 {
+  font-size: 18px !important;
+  /* font-size: 1.75rem; */
+}
+button, input, optgroup, select, textarea {
+  /* margin: 0; */
+  /* font-family: inherit; */
+  font-size: small !important;
+  line-height: initial !important;
+}
 .active {
-  /* background: #accbee; */
-  display: inline-block;
-  padding: 5px;
+  display: block;
   border-radius: 4px;
+  font-weight: bold;
   color: white !important
 }
 
@@ -92,24 +116,40 @@
   color: white !important;
 }
 
+li {
+  list-style: none !important;
+}
+
+.card-header {
+  color: rgb(26, 23, 23);
+}
+
+.leaveRoomBtn {
+  position: relative;
+  bottom: 6px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+}
+
 .message-list .noMsg {
   font-size: 20px;
   text-align: center;
   padding: 0;
   margin: 0;
-  font-weight: bold;
   color: white;
-  font-weight: bold;
   position: relative;
   top: 20%;
+  font-weight: 400;
+  font-family: 'Bree Serif', serif;
+  padding-left: 80px;
 }
 .send-message-form{
-  margin: 0 15px 5px 10px;
+  margin: 0 0 5px 10px;
 }
 
 .send-message-form input {
-  width: 99%;
-  height: 93%;
+  width: 100%;
+  height: 100%;
   padding-left: 15px;
   background: rgb(26, 23, 23);
   color: white;
@@ -125,12 +165,12 @@
 }
 
 .new-group-form {
-  margin: 0px 15px 0 5px;
+  margin: 0px 10px 0 5px;
 }
 
 .new-group-form input {
-  width: 99%;
-  height: 51px;
+  width: 100%;
+  height: 55px;
   padding-left: 15px;
   background: rgb(26, 23, 23);
   color: white;
@@ -162,23 +202,45 @@
   color: rebeccapurple;
   text-decoration: none;
   cursor: pointer;
+  font-family: 'Roboto Mono', monospace;
 }
 
 .emptyRoom {
   text-align: center;
   font-size: 30px;
   color: white;
-  font-weight: bold;
+  font-weight: 400;
   position: relative;
   top: 20%;
+  font-family: 'Bree Serif', serif;
 }
 
-.hidden {
-  display: none;
+@keyframes displayblock {
+  0% {
+      opacity: 0;
+    
+  }
+  100% {
+      opacity: 1;
+     
+  }
 }
 
 .block {
-  display: block;
+  display: block !important;
+  animation: displayblock .5s;
+  
+}
+
+.hidden {
+  visibility: hidden !important;
+  opacity: 0 !important;
+  transition: visibility 0s 1s, opacity 1s linear !important;
+}
+
+.modal {
+  background: #000000a6 !important;
+  transition: visibility 0s 1s, opacity 1s linear !important;
 }
 
 .arrow {
@@ -200,29 +262,38 @@
 .addNewGroupBtn {
   display: inline;
   position: relative;
-  left: 65px;
+  left: 55px;
   border-radius: 40%;
   background: whitesmoke;
   color: black;
   border: 0;
   cursor: pointer;
-  font-weight: bold
+  font-weight: bold;
+  margin-right: 10px;
 }
 
 .addNewGroupBtn:hover {
-  display: inline;
-  position: relative;
-  left: 65px;
-  border-radius: 40%;
   background: rebeccapurple;
   color: whitesmoke;
-  border: 0;
-  cursor: pointer;
-  font-weight: bold
 }
 
 .copyrights {
   margin-top: 100px;
+}
+
+a:hover{
+  color: white !important;
+  text-decoration: none !important;
+}
+
+.fa-user-circle{
+  padding-right: 5px;
+}
+
+.fa {
+  font-size: 12px !important;
+  position: relative !important;
+  bottom: 1px !important;
 }
 
 .roomUsers{
@@ -231,10 +302,12 @@
   display: inline-block;
   float: right;
   background: white;
-  padding: 15px;
+  padding: 5px;
   margin-right: 10px;
   color: black;
   border-radius: 5px;
+  font-family: 'Roboto Slab', serif !important;
+
 }
 
 .roomUsers h4 {
@@ -245,7 +318,8 @@
 }
 
 .roomUsers p {
-  padding-left: 15px;
+  padding-left: 10px;
+  font-size: 15px;
 }
 
 .roomUsers img {
@@ -255,4 +329,67 @@
     position: relative;
     top: 5px;
     padding-right: 5px;
+}
+
+.userName {
+  text-align: center; 
+  background: rebeccapurple; 
+  padding: 15px; 
+  border-radius: 5px; 
+  margin-right: 10px;
+  font-family: 'Kanit', sans-serif;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.deleteBtn {
+  background: red;
+  border: none;
+  border-radius: 15%;
+  float: right;
+  margin-right: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  color: white;
+  margin-top: 5px;
+}
+
+.deleteBtn:hover {
+  background: rebeccapurple;
+  color: white;
+}
+
+.noGroup {
+  text-align: center;
+  font-size: 13px;
+  margin-right: 10px
+}
+
+.addNewGroupBtnB{
+  border: none;
+    padding: 15px;
+    background: rebeccapurple;
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+    margin-top: 20px;
+    border-radius: 5px;
+    cursor: pointer
+}
+
+.confBtn {
+    display: inline-block !important;
+    margin-right: 13px !important;
+    border: none !important;
+    border-radius: 0 !important;
+}
+
+p {
+  margin-bottom: 0 !important;
+}
+
+.success-msg {
+  bottom: 0px !important;
+  position: absolute !important;
+  right: 10px !important;
 }
