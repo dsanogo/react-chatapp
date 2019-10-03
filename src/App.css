@@ -25,6 +25,37 @@
   font-size: 12px;
 }
 
+.registration-form {
+  padding-top: 90px !important;
+}
+
+.authBtn {
+  color: white !important;
+  border: 1px solid;
+  position: absolute;
+  padding: 10px;
+  text-align: center;
+  right: 20px;
+  top: 20px;
+}
+
+.registerBtn {
+  border: 1px solid !important;
+  border-radius: 0 !important;
+  padding: 15px !important;
+  font-size: 15px !important;
+  margin-top: 30px !important;
+  width: 155px !important;
+  left: 125px !important;
+  position: relative;
+  background: #3b3b3b !important;
+}
+
+.registerBtn:focus {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
 .message-text {
   padding: 5px;
   border-radius: 5px;

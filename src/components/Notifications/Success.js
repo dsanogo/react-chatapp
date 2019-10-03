@@ -4,7 +4,7 @@ class Success extends Component {
     render() {
         const message = this.props.message;
         let className = '';
-        if(message.includes('failed')){
+        if(message.includes('Username') || message.includes('taken')){
             className = this.props.success ? 
                             'success-msg alert alert-danger block' 
                             :

@@ -23,8 +23,8 @@ app.use(express.json());
 // Enable cors 
 app.use(cors());
 
-// auth route
-app.post('/auth', (req, res) => {
+// auth login route
+app.post('/auth/login', (req, res) => {
     chatkit.getUser({
         id: req.body.userId,
     })
@@ -34,6 +34,19 @@ app.post('/auth', (req, res) => {
     .catch(err => {
         res.json({status: 'Error', data: err.error_description});
     })
+})
+
+// auth registration route
+app.post('/auth/register', (req, res) => {
+    chatkit.createUser({
+        id: req.body.userId,
+        name: req.body.name
+    })
+    .then((user) => {
+        res.json({status: 'Success', data: user}).status(200);
+    }).catch((err) => {
+        res.json({status: 'Error', data: err.error_description});
+    });
 })
 
 // Starting point

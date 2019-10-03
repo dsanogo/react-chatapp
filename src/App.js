@@ -5,6 +5,7 @@ import './App.css';
 import Login from "./components/Auth/Login";
 import Chatboard from './components/Chatboard';
 import Loading from './components/Notifications/Loading';
+import Register from './components/Auth/Register';
 
 
 class App extends Component {
@@ -26,7 +27,8 @@ class App extends Component {
 
   success = () => {
     this.setState({
-      success: true
+      success: true,
+      loading: !this.state.loading
     })
 
     setTimeout(() => {
@@ -35,6 +37,14 @@ class App extends Component {
   }
 
   loginUser = (user) => {
+    const cookies = new Cookies();
+    cookies.set('user', user, { path: '/' });
+    this.setState({
+      isUserLogged: !this.state.isUserLogged
+    })
+  }
+
+  registerUser = (user) => {
     const cookies = new Cookies();
     cookies.set('user', user, { path: '/' });
     this.setState({
@@ -62,6 +72,17 @@ class App extends Component {
                         success={this.state.success} 
                         setSuccess={this.success}
                         toggleLoading={this.toggleLoading}
+                        />
+                      }
+                      />
+                <Route exact path='/register' 
+                      render={(props) => 
+                      <Register {...props} 
+                        isLogged={this.state.isUserLogged} 
+                        success={this.state.success} 
+                        setSuccess={this.success}
+                        toggleLoading={this.toggleLoading}
+                        registerUser={this.registerUser}
                         />
                       }
                       />

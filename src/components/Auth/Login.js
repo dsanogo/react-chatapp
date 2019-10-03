@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from "react-router-dom";
 import axios from 'axios'
 import Success from '../Notifications/Success';
 import Cookies from 'universal-cookie';
@@ -27,7 +28,7 @@ class Login extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const url = "http://localhost:3001/auth";
+        const url = "http://localhost:3001/auth/login";
         this.props.toggleLoading();
         axios.post(url, {userId: this.state.username}).then(res => {
             this.props.toggleLoading();
@@ -41,6 +42,7 @@ class Login extends Component {
                   })
                   
             }else {
+                this.props.toggleLoading();
                 this.props.setSuccess();
             }
         }).catch(err => {
@@ -54,6 +56,7 @@ class Login extends Component {
         return (
             <div className="login-page">
                 <p className="brandName brandLogin"><span >SMARTI'M</span></p>
+                <Link to="/register" className="authBtn">Register</Link>
                 <div className="card-login">
                     <label htmlFor="username">Login <i className="fa fa-sign-in" aria-hidden="true"></i></label>
                     <form onSubmit={this.handleSubmit}>
@@ -68,7 +71,7 @@ class Login extends Component {
                 <div className="copyrights loginCopy">
                     <p style={{fontSize: '15px'}}>Copyright &copy; 2019 | SmartI'M | All Rights Reserved</p>
                 </div>
-                <Success success={this.props.success} message="Login failed - Please try again"/>
+                <Success success={this.props.success} message="Username incorrect - Please try again"/>
             </div>
         )
     }
