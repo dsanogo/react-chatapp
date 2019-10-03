@@ -4,6 +4,7 @@ import Cookies from "universal-cookie";
 import './App.css';
 import Login from "./components/Auth/Login";
 import Chatboard from './components/Chatboard';
+import Loading from './components/Notifications/Loading';
 
 
 class App extends Component {
@@ -12,10 +13,16 @@ class App extends Component {
     super(props)
     this.state = {
       success: false,
-      isUserLogged: false
+      isUserLogged: false,
+      loading: false
     }
   }
   
+  toggleLoading = () => {
+    this.setState({
+      loading: !this.state.loading
+    })
+  }
 
   success = () => {
     this.setState({
@@ -45,6 +52,7 @@ class App extends Component {
     render() {
         return (
             <Router>
+              {this.state.loading ? (<Loading />) : ''}
               <Switch>
                 <Route path='/login' 
                       render={(props) => 
@@ -52,7 +60,10 @@ class App extends Component {
                         isLogged={this.state.isUserLogged} 
                         loginUser={this.loginUser} 
                         success={this.state.success} 
-                        setSuccess={this.success}/>}
+                        setSuccess={this.success}
+                        toggleLoading={this.toggleLoading}
+                        />
+                      }
                       />
                 <Route  exact path='/' 
                       render={(props) => 

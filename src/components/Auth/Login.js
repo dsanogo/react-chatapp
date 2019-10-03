@@ -28,7 +28,9 @@ class Login extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         const url = "http://localhost:3001/auth";
+        this.props.toggleLoading();
         axios.post(url, {userId: this.state.username}).then(res => {
+            this.props.toggleLoading();
             if (res.data.status === 'Success') {
                 this.props.loginUser(res.data.data);
                 this.setState({
@@ -42,6 +44,7 @@ class Login extends Component {
                 this.props.setSuccess();
             }
         }).catch(err => {
+            this.props.toggleLoading();
             console.log("error is authenticating you: ", err)
         })
         

@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'MyriadPro';
+    src: url('/myriad/myriad-web-pro.ttf');
+ }
+ 
 :root {
     --main-color: #5ea3d0;
     --secondary-color: white;

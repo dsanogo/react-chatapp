@@ -10,7 +10,6 @@ class Success extends Component {
                             :
                             'success-msg alert alert-danger hidden';
         }else {
-            console.log('hello')
             className = this.props.success ? 
                             'success-msg alert alert-success block' 
                             :

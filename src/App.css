@@ -60,14 +60,25 @@
   color: rgb(201, 184, 218) !important
 }
 .brandName {
-  font-family: 'Underdog', cursive;
-
+  font-family: "MyriadPro" !important;
   font-weight: 600;
   text-decoration: underline;
 }
 .group-list .group-list-title {
   text-align: center;
 
+}
+
+.loading {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  text-align: center;
+  color: white;
+  padding-top: 300px;
+  font-size: 20px;
+  z-index: 83883;
+  background: #000000ad;
 }
 
 .message-list {
@@ -77,6 +88,7 @@
   background: url("/bg_image.jpg");
   max-height: 50rem;
   overflow-y: auto;
+  background-position: center;
 }
 
 .message-list .roomName {
@@ -107,9 +119,10 @@ button, input, optgroup, select, textarea {
 }
 .active {
   display: block;
-  border-radius: 4px;
-  font-weight: bold;
-  color: white !important
+  border-radius: 2px;
+  font-weight: 500;
+  color: white !important;
+  background: rebeccapurple;
 }
 
 .active a {
@@ -140,7 +153,7 @@ li {
   position: relative;
   top: 20%;
   font-weight: 400;
-  font-family: 'Bree Serif', serif;
+  font-family: "MyriadPro" !important;
   padding-left: 80px;
 }
 .send-message-form{
@@ -155,11 +168,11 @@ li {
   color: white;
   border: 1px solid rgb(26, 23, 23);
   border-radius: 3px;
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-family: "MyriadPro" !important;
 }
 
 .send-message-form input::placeholder {
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-family: "MyriadPro" !important;
   color: white;
   font-style: italic;
 }
@@ -176,11 +189,11 @@ li {
   color: white;
   border: 1px solid rgb(26, 23, 23);
   border-radius: 3px;
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-family: "MyriadPro" !important;
 }
 
 .new-group-form  input::placeholder {
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-family: "MyriadPro" !important;
   color: white;
   font-style: italic;
 }
@@ -188,10 +201,15 @@ li {
 .group {
   list-style: none;
   color: rebeccapurple;
-  font-size: 18px;
-  padding-bottom: 5px;
+  font-size: 17px;
   /* display: inline-block; */
   text-align: left;
+}
+
+.group:hover, .group:hover a {
+  background: rebeccapurple;
+  color: white !important;
+  cursor: pointer;
 }
 
 .group-list ul {
@@ -202,7 +220,7 @@ li {
   color: rebeccapurple;
   text-decoration: none;
   cursor: pointer;
-  font-family: 'Roboto Mono', monospace;
+  font-family: "MyriadPro" !important;
 }
 
 .emptyRoom {
@@ -212,7 +230,7 @@ li {
   font-weight: 400;
   position: relative;
   top: 20%;
-  font-family: 'Bree Serif', serif;
+  font-family: "MyriadPro" !important;
 }
 
 @keyframes displayblock {
@@ -281,9 +299,10 @@ li {
   margin-top: 100px;
 }
 
-a:hover{
+a:hover {
   color: white !important;
   text-decoration: none !important;
+
 }
 
 .fa-user-circle{
@@ -337,7 +356,7 @@ a:hover{
   padding: 15px; 
   border-radius: 5px; 
   margin-right: 10px;
-  font-family: 'Kanit', sans-serif;
+  font-family: "MyriadPro" !important;
   font-weight: 500;
   margin-bottom: 20px;
 }
@@ -355,7 +374,7 @@ a:hover{
 }
 
 .deleteBtn:hover {
-  background: rebeccapurple;
+  background: rgb(15, 2, 27);
   color: white;
 }
 
@@ -399,6 +418,7 @@ p {
   height: 100vh;
   width: 100%;
   overflow: hidden;
+  background-position: center;
 
 }
 
@@ -412,7 +432,7 @@ p {
   font-size: 40px;
   color: white;
   margin-bottom: 8px !important;
-  font-family: 'Bree Serif', serif;
+  font-family: "MyriadPro" !important;
 }
 
 .card-login input{
@@ -456,6 +476,7 @@ p {
     color: white;
     padding-left: 40px;
     padding-top: 15px;
+    font-family: "MyriadPro" !important;
 }
 
 .loginCopy {
@@ -463,7 +484,7 @@ p {
     bottom: 20px;
     color: white;
     right: 15px;
-    font-family: 'Bree Serif', serif;
+    font-family: "MyriadPro" !important;
 }
 
 .fa-sign-out {

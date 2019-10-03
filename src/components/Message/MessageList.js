@@ -40,8 +40,24 @@ class MessageList extends Component {
                 <p>Join a room <span className="arrow">&rarr;	</span></p>
                 <div className="copyrights">
                     <p style={{fontSize: '15px'}}>Copyright &copy; 2019 | SmartI'M | All Rights Reserved</p>
-                    <p style={{fontSize: '13px', fontStyle: "italic"}}>Developed By: <a href="https://www.facebook.com/ctdsanogo" className="authors" target="_blank">Eng. Daouda Sanogo</a></p>
-                    <p style={{fontSize: '13px', fontStyle: "italic"}}>Designed by: <a href="https://www.facebook.com/waild.uosama" className="authors" target="_blank">Eng. Walid Osama</a></p>
+                    <p style={{fontSize: '13px', fontStyle: "italic"}}>
+                        Developed By: 
+                        <a href="https://www.facebook.com/ctdsanogo" 
+                            className="authors" 
+                            target="_blank"
+                            rel="noreferrer noopener"
+                            > Eng. Daouda Sanogo
+                        </a>
+                    </p>
+                    <p style={{fontSize: '13px', fontStyle: "italic"}}>
+                        Designed by: 
+                        <a href="https://www.facebook.com/waild.uosama" 
+                            className="authors" 
+                            target="_blank"
+                            rel="noreferrer noopener"
+                            > Eng. Walid Osama
+                        </a>
+                    </p>
                 </div>
             </div>
         ) : (
@@ -63,7 +79,6 @@ class MessageList extends Component {
                                     Leave group
                                 </button>
                             </h3>
-                            
                         </div>
                         
                         <div className="roomUsers">
@@ -76,12 +91,10 @@ class MessageList extends Component {
                                 </p>)
                             })}
                         </div>
-                        
                     </div>
-                    
                 )}
 
-                {selectedRoom.name !== undefined && messages.length == 0 ? (
+                {selectedRoom.name !== undefined && messages.length === 0 ? (
                     <div className="noMsg">
                         <h3>Welcome to #<span style={{fontWeight: "bold"}}>{selectedRoom.name}</span> channel</h3>
                         <p>Start chat now...</p>
@@ -94,6 +107,7 @@ class MessageList extends Component {
                     toggleConfirm={this.toggleConfirm}
                     leaveRoom={this.props.leaveRoom}
                     />
+                    
                 {displayMessages}
             </div>
         )

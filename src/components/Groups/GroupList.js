@@ -1,5 +1,5 @@
 import React from 'react'
-import {Modal, Confirm} from '../Modals/Modal';
+import {Modal} from '../Modals/Modal';
 import Success from '../Notifications/Success';
 
 class GroupList extends React.Component  {
@@ -39,9 +39,12 @@ class GroupList extends React.Component  {
                         <span className="groupTitle"
                             onClick={this.props.resetRoom}
                         >Your groups</span>
-                        <button className="addNewGroupBtn" title="Add new group"
-                        onClick={() => newGroupClick(true)}
-                        ><i className="fa fa-plus" aria-hidden="true"></i></button>
+                        <button 
+                                className="addNewGroupBtn" title="Add new group"
+                                onClick={() => newGroupClick(true)}
+                            >
+                            <i className="fa fa-plus" aria-hidden="true"></i>
+                        </button>
                     </h3>
                     <div>
                         {
@@ -51,8 +54,10 @@ class GroupList extends React.Component  {
                                     <div key={group.id}>
                                         <li className={"group " + active} >
                                             <a 
-                                                onClick={() => subscribeToRoom(group)} 
-                                                href="#"
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    subscribeToRoom(group)}} 
+                                                href="/"
                                             >
                                                 # {group.name}</a>
                                             {
@@ -84,14 +89,20 @@ class GroupList extends React.Component  {
                             }) : (
                                 <div className="noGroup">
                                     <h3>Oops, seems you don't have any group yet.</h3>
-                                        <button className="addNewGroupBtnB" title="Add new group"
+                                        <button className="addNewGroupBtnB" 
+                                                title="Add new group"
                                                 onClick={() => newGroupClick(true)}
-                                            >Add new group now</button>    
+                                            >
+                                                Add new group now
+                                        </button>    
                                 </div>
                                 
                             )
                         }
-                        <Success success={this.props.success} message="Your request has successfully been processed"/>
+                        <Success 
+                            success={this.props.success} 
+                            message="Your request has successfully been processed"
+                        />
                     </div>
                 </ul>
             </div>
