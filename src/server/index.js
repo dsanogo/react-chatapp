@@ -1,42 +1,42 @@
 const express = require('express')
 const app = express()
+
+// Import Chatkit SDK
 const Chatkit = require('@pusher/chatkit-server');
-// import * as config from '../../src/config';
-// const {instanceLocator, apiKey} = require('../../src/config');
+
+// Import config from .env file
+const dotenv = require('dotenv')
+dotenv.config();
 
 const cors = require('cors')
 const port = 3001
 
+// Create a chatkit instance
 const chatkit = new Chatkit.default({
-    instanceLocator: "v1:us1:6e9d8d73-f96c-460e-82f2-6b94432027bf",
-    key: "f6086202-2f28-434a-a916-6d1016e55098:7xBBovdnJdqlSVLeNJmnvcglSNkaJU6MUhsxT31Nw0I=",
+    instanceLocator: process.env.INSTANCE_LOCATOR,
+    key: process.env.API_KEY,
   })
 
+// Enable Body Parser
 app.use(express.json());
+
+// Enable cors 
 app.use(cors());
 
+// auth route
 app.post('/auth', (req, res) => {
-    console.log(req.body);
-    // const authData = chatkit.authenticate({
-    //   userId: req.body.userId
-    // });
-
     chatkit.getUser({
         id: req.body.userId,
-      })
-        .then(user => {
-            res.json({status: 'Success', data: user}).status(200);
-        })
-        .catch(err => {
-            res.json({status: 'Error', data: err.error_description}).status(404);
-        })
+    })
+    .then(user => {
+        res.json({status: 'Success', data: user}).status(200);
+    })
+    .catch(err => {
+        res.json({status: 'Error', data: err.error_description});
+    })
+})
 
-    // console.log(authData);
-  
-    // res.status(authData.status)
-    //    .send(authData.body);
-  })
-
+// Starting point
 app.get('/', (req, res) => res.send('Hello from the server!'));
 
 app.listen(port, () => {

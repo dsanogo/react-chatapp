@@ -1,6 +1,6 @@
 import React from 'react'
-import {Modal, Confirm} from './Modal';
-import Success from './Success';
+import {Modal, Confirm} from '../Modals/Modal';
+import Success from '../Notifications/Success';
 
 class GroupList extends React.Component  {
     constructor(props) {
@@ -24,7 +24,15 @@ class GroupList extends React.Component  {
                 <ul>
                     {
                         currentUser && 
-                        (<h3 className="userName">Welcome {currentUser.name}</h3>)
+                        (<h3 className="userName">
+                            <p><i className="fa fa-sign-out" 
+                                title="Sign out"
+                                onClick={() => {
+                                    this.props.logoutUser()
+                                }}
+                                ></i></p>
+                            Welcome {currentUser.name}
+                        </h3>)
                     }
                     
                     <h3 style={{marginBottom: "20px"}}>
@@ -83,7 +91,7 @@ class GroupList extends React.Component  {
                                 
                             )
                         }
-                        <Success success={this.props.success}/>
+                        <Success success={this.props.success} message="Your request has successfully been processed"/>
                     </div>
                 </ul>
             </div>

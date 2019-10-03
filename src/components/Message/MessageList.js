@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import ReactDOM from "react-dom";
 import Message from "./Message";
-import { Confirm } from './Modal';
+import { Confirm } from '../Modals/Modal';
 class MessageList extends Component {
 
     constructor(props) {
