@@ -7,6 +7,7 @@ import NewGroupForm from './components/NewGroupForm';
 
 import Chatkit from "@pusher/chatkit-client";
 import { instanceLocator, tokenUrl } from "./config";
+import Login from './components/Login';
 
 class App extends Component {
 
@@ -142,7 +143,6 @@ class App extends Component {
       }, 3000);
     }
 
-
     render() {
         return (
           <div className="app">
@@ -159,9 +159,17 @@ class App extends Component {
             <MessageList 
                   messages={this.state.messages} 
                   selectedRoom={this.state.selectedRoom}
-                  leaveRoom={this.leaveRoom}/>
-            <SendMessageForm sendMessage={this.sendMessage} currentRoom={this.state.selectedRoom.id}/>
-            <NewGroupForm createRoom={this.createRoom} isClicked={this.state.newGroupBtnClicked}/>
+                  leaveRoom={this.leaveRoom}
+                  />
+            <SendMessageForm 
+                  sendMessage={this.sendMessage} 
+                  currentRoom={this.state.selectedRoom.id}
+                  />
+            <NewGroupForm 
+                  createRoom={this.createRoom} 
+                  isClicked={this.state.newGroupBtnClicked}
+                  />
+            <Login />
           </div>
         );
 
