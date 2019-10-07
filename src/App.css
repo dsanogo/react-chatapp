@@ -347,29 +347,31 @@ a:hover {
 }
 
 .roomUsers{
-  width: 200px;
-  height: 300px;
-  display: inline-block;
-  float: right;
-  background: white;
-  padding: 5px;
-  margin-right: 10px;
-  color: black;
-  border-radius: 5px;
-  font-family: 'Roboto Slab', serif !important;
+    border: 1px solid #716d6d;
+    width: 200px;
+    height: 80vh;
+    display: inline-block;
+    float: right;
+    background: transparent;
+    padding: 5px;
+    margin-right: 10px;
+    overflow: auto;
+    color: whitesmoke;
+    border-radius: 5px;
+    font-family: 'Roboto Slab', serif !important;
 
 }
 
 .roomUsers h4 {
   font-weight: bold;
-  font-size: 20px;
+  font-size: 15px;
   text-align: center;
   text-decoration: underline
 }
 
 .roomUsers p {
-  padding-left: 10px;
-  font-size: 15px;
+  padding-left: 12px;
+  font-size: 13px;
 }
 
 .roomUsers img {

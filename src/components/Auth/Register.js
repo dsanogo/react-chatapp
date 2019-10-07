@@ -91,7 +91,6 @@ class Register extends Component {
                             id="userId"
                             autoComplete="off"
                             onChange={this.handleChange}/>
-                            <p style={{color: 'white', fontStyle: 'italic'}}>Username should not include any space</p>
                             {this.state.usernameError ? (
                                 <p style={{color: 'red'}}>Username should not include white space</p>
                             ) : ''}

@@ -82,7 +82,7 @@ class MessageList extends Component {
                         </div>
                         
                         <div className="roomUsers">
-                            <h4>Users</h4>
+                            <h4>Members</h4>
                             {selectedRoom.users && selectedRoom.users.map(user => {
                                 return (<p key={user.id}>
                                     <i className="fa fa-user-circle" aria-hidden="true"></i>
