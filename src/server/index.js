@@ -12,6 +12,7 @@ const cors = require('cors')
 const port = 3001
 
 // Create a chatkit instance
+// console.log(process.env.INSTANCE_LOCATOR);
 const chatkit = new Chatkit.default({
     instanceLocator: process.env.INSTANCE_LOCATOR,
     key: process.env.API_KEY,
