@@ -23,16 +23,15 @@ class GroupList extends React.Component  {
             <div className="group-list">
                 <ul>
                     {
-                        currentUser && 
-                        (<h3 className="userName">
-                            <p><i className="fa fa-sign-out" 
-                                title="Sign out"
-                                onClick={() => {
-                                    this.props.logoutUser()
-                                }}
-                                ></i></p>
-                            Welcome {currentUser.name}
-                        </h3>)
+                        currentUser ? (<h3 className="userName">
+                        <p><i className="fa fa-sign-out" 
+                            title="Sign out"
+                            onClick={() => {
+                                this.props.logoutUser()
+                            }}
+                            ></i></p>
+                        Welcome {currentUser.name}
+                    </h3>) : <h3 className="userName">Loading...</h3>
                     }
                     
                     <h3 style={{marginBottom: "20px"}}>

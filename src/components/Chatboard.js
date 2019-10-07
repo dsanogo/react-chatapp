@@ -96,6 +96,7 @@ class Chatboard extends Component {
     }
 
     createRoom = (roomName) => {
+      this.props.setSuccess();
       this.currentUser.createRoom({
         name: roomName
       }).then(room => {
@@ -125,6 +126,7 @@ class Chatboard extends Component {
     }
 
     deleteRoom = (room) => {
+      this.props.setSuccess();
       this.currentUser.deleteRoom({roomId: room.id}).then(response => {
         this.getRooms();
         this.setState({messages: [], selectedRoom: {}});
